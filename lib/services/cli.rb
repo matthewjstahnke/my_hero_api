@@ -1,8 +1,9 @@
 class Cli
 
     def start
-        puts "Super Smash Bros Character veiwer!"
+        puts "Welcome to MY Hero Academia Character veiwer!"
         puts "Now loading............................"
+        Api.load_data
         main_menu_options
     end
 
@@ -38,3 +39,4 @@ class Cli
     def invalid_choice
         "Invalid Choice, Try Again"
     end
+end
