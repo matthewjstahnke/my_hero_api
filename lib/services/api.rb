@@ -9,10 +9,20 @@ class Api
     end 
 
     def self.load_characters
-        characters = []
-        response = RestClient.get(base_url + '/character?occupation=Student')
-        data = JSON.parse(response.body)
-        data["results"].each do |character_data|
+        page_number = 1
+
+
+        until page_number == 17 do
+            
+            response = RestClient.get(base_url + "/character?page=#{page_number}")
+            data = JSON.parse(response.body)
+            data["result"].each do |character_data|
+                Character.new(character_data)
+            end
+            page_number += 1
+        end
+
+       
     end
 
 
