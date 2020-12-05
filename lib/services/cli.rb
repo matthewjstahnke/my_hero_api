@@ -4,31 +4,35 @@ class Cli
         puts "Welcome to MY Hero Academia Character veiwer!"
         puts "Now loading............................"
         Api.load_data
-        main_menu_options
+        print_menu
+        main_menu
     end
 
-    def main_menu_options
+    def print_menu
         puts "______________________________________"
         puts "Type 1 to See All Characters"
-        puts "Type 'exit' to exit the program"
-        puts "______________________________________"
-        main_menu
+        puts "Type 0 to exit the program"
+        puts "______________________________________"  
     end
 
     def main_menu
         input = get_input
 
-        if input == "1"
+        while !(input == 1 || input == 0)
+            invalid_choice
+            print_menu
+            input = get_input;
+        end
+
+        if input == 1
             list_characters
             puts "Choose your Character"
-        elsif input == "exit"
+        else
             puts " "
             puts " "
             puts " "
             puts "Good-Bye"
-        else
-            invalid_choice
-            main_menu_options
+            exit
         end
     end
 
@@ -37,7 +41,7 @@ class Cli
         puts " "
         puts " "
         print "Enter Choice: "
-        gets.chomp
+        gets.chomp.to_i
     end
 
     def invalid_choice
@@ -55,23 +59,24 @@ class Cli
     def character_menu_options
         puts "______________________________________"
         puts "Enter the number next to the character you'd like to choose."
-        puts "Or type 'exit' to exit the program."
+        puts "Or type '0' to exit the program."
         puts "______________________________________"
         character_menu
     end
 
     def character_menu
         input = get_input
-        if input.to_i.between?(1, Character.all.length)  
+        if input.between?(1, Character.all.length)  
             index = input.to_i - 1
             character = Character.all[index]
             print_character_details(character)
             pick_again_or_exit
-        elsif input == "exit"
+        elsif input == 0
             puts " "
             puts " "
             puts " "
             puts "Good-Bye"
+            exit
         else
             invalid_choice
             character_menu_options 
@@ -91,12 +96,13 @@ class Cli
     def pick_again_or_exit
         puts "Would you like to return to the Main Menu or exit?"
         puts "'1' for Main Menu"
-        puts "'exit' to exit program."
+        puts "'0' to exit program."
         input = get_input
 
-        if input == "1"
-            main_menu_options
-        elsif input == "exit"
+        if input == 1
+            print_menu
+            main_menu
+        elsif input == 0
             puts " "
             puts " "
             puts " "
