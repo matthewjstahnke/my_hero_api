@@ -21,13 +21,11 @@ class Cli
         if input == "1"
             list_characters
             puts "Choose your Character"
-            main_menu_options
         elsif input == "exit"
             puts " "
             puts " "
             puts " "
             puts "Good-Bye"
-            exit
         else
             invalid_choice
             main_menu_options
@@ -74,7 +72,6 @@ class Cli
             puts " "
             puts " "
             puts "Good-Bye"
-            exit
         else
             invalid_choice
             character_menu_options 
