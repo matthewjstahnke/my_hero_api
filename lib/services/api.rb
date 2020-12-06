@@ -1,5 +1,4 @@
-class Api
-     
+class Api   
     def self.base_url
         "https://myheroacademiaapi.com/api"
     end
@@ -11,7 +10,6 @@ class Api
     def self.load_characters
         page_number = 1
 
-
         until page_number == 17 do
             
             response = RestClient.get(base_url + "/character?page=#{page_number}")
@@ -21,9 +19,5 @@ class Api
             end
             page_number += 1
         end
-
-       
     end
-
-
 end

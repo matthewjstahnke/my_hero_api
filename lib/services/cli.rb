@@ -41,7 +41,7 @@ class Cli
     end
     def list_characters
         Character.all.each.with_index(1) do |character, index|
-            puts "#{index}. #{character.name}"
+            puts "#{index}. #{character.id.gsub("_", " ").gsub("%", " ")}"
         end
         character_menu_options
     end
@@ -77,6 +77,7 @@ class Cli
         puts "Character Quirk: #{character.quirk}"
         puts "Character Hair Color: #{character.hair}"
         puts "Character Affiliation: #{character.affiliation}"
+        puts "Character Description: #{character.description}"
         puts "______________________________________"
     end
     def pick_again_or_exit
